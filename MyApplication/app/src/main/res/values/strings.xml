@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="greetings">Hello, user!</string>
+    <string name="button_desc">Get color</string>
+    <string-array name="colors">
+        <item>Красный</item>
+        <item>Оранжевый</item>
+        <item>Желтый</item>
+        <item>Зеленый</item>
+        <item>Голубой</item>
+    </string-array>
+    <string-array name="description_of_color">
+        <item>Красный цвет красивый</item>
+        <item>Оранжевый цвет скучный</item>
+        <item>Желтый цвет яркий</item>
+        <item>Зеленый цвет спокойный</item>
+        <item>Голубой цвет неба</item>
+    </string-array>
+</resources>
