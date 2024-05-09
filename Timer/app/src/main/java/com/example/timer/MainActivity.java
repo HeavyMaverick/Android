@@ -15,9 +15,23 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onStop() {
+        super.onStop();
+        wasRunning = isRunning;
+        isRunning = false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isRunning = wasRunning;
+    }
+
     private int seconds = 0;
     private TextView textViewTimer;
     private boolean isRunning = false;
+    private boolean wasRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         textViewTimer = findViewById(R.id.textViewTimer);
-        if (savedInstanceState!=null){
+        if (savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             isRunning = savedInstanceState.getBoolean("isRunning");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
         runTimer();
     }
@@ -40,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("seconds",seconds);
+        outState.putInt("seconds", seconds);
         outState.putBoolean("isRunning", isRunning);
+        outState.putBoolean("wasRunning", wasRunning);
     }
 
     public void onClickResetTimer(View view) {
