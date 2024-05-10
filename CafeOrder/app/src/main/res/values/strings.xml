@@ -5,4 +5,5 @@
     <string name="welcome">Добро пожаловать!</string>
     <string name="hint_name">Введите ваше имя:</string>
     <string name="hint_password">Введите пароль</string>
+    <string name="toast_fill_fields">Заполните поля</string>
 </resources>
