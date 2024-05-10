@@ -16,15 +16,15 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     @Override
-    protected void onStop() {
-        super.onStop();
-        wasRunning = isRunning;
+    protected void onPause() {
+        super.onPause();
+        wasRunning= isRunning;
         isRunning = false;
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         isRunning = wasRunning;
     }
 
