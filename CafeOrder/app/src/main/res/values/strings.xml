@@ -1,9 +1,30 @@
 <resources>
     <string name="app_name">CafeOrder</string>
+    <string name="tea">Чай</string>
+    <string name="coffee">Кофе</string>
     <string name="logo_description">Логотип кафе</string>
     <string name="login_button">Войти в сервис</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="hint_name">Введите ваше имя:</string>
     <string name="hint_password">Введите пароль</string>
     <string name="toast_fill_fields">Заполните поля</string>
+    <string name="text_view_additions">Что добавить в ваш чай?</string>
+    <string name="checkbox_milk">молоко</string>
+    <string name="checkbox_sugar">сахар</string>
+    <string name="checkbox_lemon">лимон</string>
+    <string name="choose_drink">Выберите вид напитка</string>
+    <string name="content_description_bttn">Кнопка отправить заказ</string>
+    <string name="hello_user">Привет, %s! Что будете заказывать?</string>
+    <string name="default_name">клиент</string>
+    <string name="default_password">пароль</string>
+    <string-array name="options_of_coffee">
+        <item>Американо</item>
+        <item>Эспрессо</item>
+        <item>Латте</item>
+    </string-array>
+    <string-array name="options_of_tea">
+        <item>Черный</item>
+        <item>Зеленый</item>
+        <item>Улун</item>
+    </string-array>
 </resources>
