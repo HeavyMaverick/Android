@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,18 +24,14 @@ public class CreateOrderActivity extends AppCompatActivity {
     private Spinner spinnerCoffee;
     private String name;
     private String password;
-    private String drink = getString(R.string.tea);
+    private String drink;
+    private StringBuilder builderAdditions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create_order);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
         Intent intent = getIntent();
         if (intent.hasExtra("name") && intent.hasExtra("password")) {
             name = intent.getStringExtra("name");
@@ -43,8 +40,9 @@ public class CreateOrderActivity extends AppCompatActivity {
             name = getString(R.string.default_name);
             password = getString(R.string.default_password);
         }
+        drink = getString(R.string.tea);
         textViewHello = findViewById(R.id.textViewGreetings);
-        String hello = String.format(getString(R.string.hello_user), textViewHello);
+        String hello = String.format(getString(R.string.hello_user), name);
         textViewHello.setText(hello);
         textViewAdditions = findViewById(R.id.textViewAdditions);
         checkBoxMilk = findViewById(R.id.checkBoxMilk);
@@ -52,12 +50,55 @@ public class CreateOrderActivity extends AppCompatActivity {
         checkBoxLemon = findViewById(R.id.checkBoxLemon);
         spinnerCoffee = findViewById(R.id.spinnerCoffee);
         spinnerTea = findViewById(R.id.spinnerTea);
+        builderAdditions = new StringBuilder();
     }
 
     public void onClickChangeDrink(View view) {
+        RadioButton radioButton = ((RadioButton) view);
+        int id = radioButton.getId();
+        if (id == R.id.radioButtonTea){
+            drink = getString(R.string.tea);
+            spinnerTea.setVisibility(View.VISIBLE);
+            spinnerCoffee.setVisibility(View.INVISIBLE);
+            checkBoxLemon.setVisibility(View.VISIBLE);
+        } else if (id == R.id.radioButtonCoffee){
+            drink = getString(R.string.coffee);
+            spinnerCoffee.setVisibility(View.VISIBLE);
+            spinnerTea.setVisibility(View.INVISIBLE);
+            checkBoxLemon.setVisibility(View.INVISIBLE);
+        }
+        String additions = String.format(getString(R.string.text_view_additions), drink);
+        textViewAdditions.setText(additions);
     }
 
     public void onClickSendOrder(View view) {
+        builderAdditions.setLength(0);
+        if (checkBoxMilk.isChecked()){
+            builderAdditions.append(getString(R.string.checkbox_milk)).append(" ");
+        }
+        if (checkBoxLemon.isChecked()){
+            builderAdditions.append(getString(R.string.checkbox_lemon)).append(" ");
+        }
+        if (checkBoxSugar.isChecked() && drink.equals(getString(R.string.tea))){
+            builderAdditions.append(getString(R.string.checkbox_sugar)).append(" ");
+        }
+        String optionOfDrink = "";
+        if (optionOfDrink.equals(getString(R.string.tea))){
+            optionOfDrink = spinnerTea.getSelectedItem().toString();
+        } else {
+            optionOfDrink = spinnerCoffee.getSelectedItem().toString();
+        }
+        String order = String.format(getString(R.string.order), name, password, drink, optionOfDrink);
+        String additions;
+        if (builderAdditions.length() > 0){
+            additions = getString(R.string.need_additions) + builderAdditions.toString();
+        } else {
+            additions = "";
+        }
+        String fullOrder = order + additions;
+        Intent intent = new Intent(this, OrderDetailActivity.class);
+        intent.putExtra("order", fullOrder);
+        startActivity(intent);
     }
 
     @Override

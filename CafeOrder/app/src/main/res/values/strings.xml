@@ -8,7 +8,7 @@
     <string name="hint_name">Введите ваше имя:</string>
     <string name="hint_password">Введите пароль</string>
     <string name="toast_fill_fields">Заполните поля</string>
-    <string name="text_view_additions">Что добавить в ваш чай?</string>
+    <string name="text_view_additions">Что добавить в %s?</string>
     <string name="checkbox_milk">молоко</string>
     <string name="checkbox_sugar">сахар</string>
     <string name="checkbox_lemon">лимон</string>
@@ -17,6 +17,8 @@
     <string name="hello_user">Привет, %s! Что будете заказывать?</string>
     <string name="default_name">клиент</string>
     <string name="default_password">пароль</string>
+    <string name="order">Имя: %s\nПароль: %s\nНапиток: %s\nВид напитка: %s</string>
+    <string name="need_additions">Необходимые добавки</string>
     <string-array name="options_of_coffee">
         <item>Американо</item>
         <item>Эспрессо</item>
