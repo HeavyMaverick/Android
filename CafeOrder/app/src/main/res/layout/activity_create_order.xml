@@ -36,14 +36,14 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:onClick="onClickChangeDrink"
-            android:text="@string/coffee" />
+            android:text="@string/tea" />
 
         <RadioButton
             android:id="@+id/radioButtonCoffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClickChangeDrink"
-            android:text="@string/tea" />
+            android:text="@string/coffee" />
     </RadioGroup>
 
     <TextView

@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class CreateOrderActivity extends AppCompatActivity {
     private TextView textViewHello;
@@ -25,7 +22,9 @@ public class CreateOrderActivity extends AppCompatActivity {
     private String name;
     private String password;
     private String drink;
+    private String drinktext;
     private StringBuilder builderAdditions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +40,61 @@ public class CreateOrderActivity extends AppCompatActivity {
             password = getString(R.string.default_password);
         }
         drink = getString(R.string.tea);
+        drinktext = getString(R.string.tea_small);
         textViewHello = findViewById(R.id.textViewGreetings);
         String hello = String.format(getString(R.string.hello_user), name);
         textViewHello.setText(hello);
         textViewAdditions = findViewById(R.id.textViewAdditions);
+        //textViewAdditions.setText(getString(R.string.text_view_additions_default));
         checkBoxMilk = findViewById(R.id.checkBoxMilk);
         checkBoxSugar = findViewById(R.id.checkBoxSugar);
         checkBoxLemon = findViewById(R.id.checkBoxLemon);
         spinnerCoffee = findViewById(R.id.spinnerCoffee);
         spinnerTea = findViewById(R.id.spinnerTea);
         builderAdditions = new StringBuilder();
+
     }
 
     public void onClickChangeDrink(View view) {
         RadioButton radioButton = ((RadioButton) view);
         int id = radioButton.getId();
-        if (id == R.id.radioButtonTea){
+        if (id == R.id.radioButtonTea) {
             drink = getString(R.string.tea);
+            drinktext = getString(R.string.tea_small);
             spinnerTea.setVisibility(View.VISIBLE);
             spinnerCoffee.setVisibility(View.INVISIBLE);
             checkBoxLemon.setVisibility(View.VISIBLE);
-        } else if (id == R.id.radioButtonCoffee){
+        } else if (id == R.id.radioButtonCoffee) {
             drink = getString(R.string.coffee);
+            drinktext = getString(R.string.coffee_small);
             spinnerCoffee.setVisibility(View.VISIBLE);
             spinnerTea.setVisibility(View.INVISIBLE);
             checkBoxLemon.setVisibility(View.INVISIBLE);
         }
-        String additions = String.format(getString(R.string.text_view_additions), drink);
+        String additions = String.format(getString(R.string.text_view_additions), drinktext);
         textViewAdditions.setText(additions);
     }
 
     public void onClickSendOrder(View view) {
         builderAdditions.setLength(0);
-        if (checkBoxMilk.isChecked()){
+        String optionOfDrink = "";
+        if (checkBoxMilk.isChecked()) {
             builderAdditions.append(getString(R.string.checkbox_milk)).append(" ");
         }
-        if (checkBoxLemon.isChecked()){
+        if (checkBoxLemon.isChecked()) {
             builderAdditions.append(getString(R.string.checkbox_lemon)).append(" ");
         }
-        if (checkBoxSugar.isChecked() && drink.equals(getString(R.string.tea))){
+        if (checkBoxSugar.isChecked() && drink.equals(getString(R.string.tea))) {
             builderAdditions.append(getString(R.string.checkbox_sugar)).append(" ");
         }
-        String optionOfDrink = "";
-        if (optionOfDrink.equals(getString(R.string.tea))){
+        if (optionOfDrink.equals(getString(R.string.tea))) {
             optionOfDrink = spinnerTea.getSelectedItem().toString();
         } else {
             optionOfDrink = spinnerCoffee.getSelectedItem().toString();
         }
         String order = String.format(getString(R.string.order), name, password, drink, optionOfDrink);
         String additions;
-        if (builderAdditions.length() > 0){
+        if (builderAdditions.length() > 0) {
             additions = getString(R.string.need_additions) + builderAdditions.toString();
         } else {
             additions = "";

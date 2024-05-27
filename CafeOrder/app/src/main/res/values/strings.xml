@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">CafeOrder</string>
     <string name="tea">Чай</string>
+    <string name="tea_small">чай</string>
     <string name="coffee">Кофе</string>
+    <string name="coffee_small">кофе</string>
     <string name="logo_description">Логотип кафе</string>
     <string name="login_button">Войти в сервис</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="hint_name">Введите ваше имя:</string>
     <string name="hint_password">Введите пароль</string>
     <string name="toast_fill_fields">Заполните поля</string>
+    <string name="text_view_additions_default">Что добавить в чай?</string>
     <string name="text_view_additions">Что добавить в %s?</string>
     <string name="checkbox_milk">молоко</string>
     <string name="checkbox_sugar">сахар</string>
